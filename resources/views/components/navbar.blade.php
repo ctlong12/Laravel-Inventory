@@ -1,9 +1,20 @@
+<?php
+    /**
+     * navbar.blade.php is the Navigation Bar that's displayed throughout our
+     * entire application. The majority of this code was generated when I ran 
+     *  the command "php artisan ui:auth".
+     * 
+     * The command automatically generated a Navigation Bar and authentication
+     * controllers.  YAY LARAVEL!
+     *
+     */
 
+?>
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" style = "color: black;">
-                    Laravel Blog
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" style = "color: black;">
+                    Laravel Inventory!
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -14,11 +25,17 @@
                     
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                  <a class="nav-link" href="/posts">Dashboard</a>
+                                  <a class="nav-link" href="/assets">My Items</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="/posts/create">Create Post</a>
-                                </li>                                
+                                  <a class="nav-link" href="/owner">All Items</a>
+                                </li> 
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/assets/create">Item +</a>
+                                </li> 
+                                <li class="nav-item">
+                                  <a class="nav-link" href="/person/create">Person +</a>
+                                </li> 
                             </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -50,9 +67,9 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                        </li>
+                    @endguest
+                </ul>
+        </div>
+    </div>
+</nav>

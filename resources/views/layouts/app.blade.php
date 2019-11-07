@@ -1,3 +1,16 @@
+<?php
+    /**
+     * app.blade.php is the default HTML layout that will be used on 
+     * every page in our application.
+     * 
+     * app.blade.php contains our Navigation Bar which was imported from the 
+     * components folder. It also includes components/errors which is a generic
+     * error handling code base.
+     *
+     * @return void
+     */
+?>
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -7,7 +20,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel Blog</title>
+    <title>Inventory!</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,9 +34,9 @@
 </head>
 <body>
     <div id="app">
-        @include('inc.navbar')
+        @include('components.navbar')
         <div>
-            @include('inc.messages')
+            @include('components.errors')
             @yield('content')
        </div>
     </div>

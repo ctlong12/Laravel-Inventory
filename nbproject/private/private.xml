@@ -3,14 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/LaravelBlog/app/Http/Controllers/PostsController.php</file>
-            <file>file:/var/www/LaravelBlog/app/Http/Controllers/PagesController.php</file>
-            <file>file:/var/www/LaravelBlog/resources/views/inc/jumbotron.blade.php</file>
-            <file>file:/var/www/LaravelBlog/resources/views/pages/index.blade.php</file>
-            <file>file:/var/www/LaravelBlog/resources/views/posts/create.blade.php</file>
-            <file>file:/var/www/LaravelBlog/resources/views/inc/navbar.blade.php</file>
-            <file>file:/var/www/LaravelBlog/resources/views/posts/index.blade.php</file>
-            <file>file:/var/www/LaravelBlog/resources/views/layouts/app.blade.php</file>
+            <file>file:/var/www/LaravelBlog/app/Http/Controllers/AssetsController.php</file>
         </group>
     </open-files>
 </project-private>

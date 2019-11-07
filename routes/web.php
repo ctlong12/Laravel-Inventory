@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'AssetsController@index');
 
-Route::get('/about', 'PagesController@about');
+Route::resource('assets', 'AssetsController');
+Route::resource('person', 'PersonController');
+Route::resource('owner', 'OwnerController');
 
-Route::get('/services', 'PagesController@services');
 
-Route::resource('posts', 'PostsController');
 Auth::routes();
 
-Route::get('/posts', 'PostsController@index');
+Route::get('/assets', 'AssetsController@index');

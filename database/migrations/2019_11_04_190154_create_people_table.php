@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PostImage extends Migration
+class CreatePeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class PostImage extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function($table) {
-            $table->string('post_image');
+        Schema::create('people', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->string('fname');
+            $table->string('lname');
+            $table->date('birthDate');
+            $table->string('email');
+
         });
     }
 
@@ -25,8 +31,6 @@ class PostImage extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function($table) {
-            $table->dropColumn('post_image');
-        });
+        Schema::dropIfExists('people');
     }
 }

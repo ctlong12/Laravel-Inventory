@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Post;
-use Illuminate\Http\Request;
-use DB;
 
-class PostsController extends Controller
-{
-    
+use Illuminate\Http\Request;
+
+use App\Asset;
+use App\User;
+use App\Person;
+
+
+
+class AssetsController extends Controller {
+        
     /**
      * Create a new controller instance.
      *
@@ -25,10 +29,14 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //$posts = Post::all();
-        
-        $posts = DB::select('SELECT * FROM posts');
-        return view('posts.index')->with('posts', $posts);
+       $assets = Asset::all();
+               
+        return view('assets.index', compact('assets'));
+       // $user_id = auth()->user()->id;
+        //$user = User::find($user_id)->assets()->paginate(10);
+        //return view('assets.index', compact('assets', $user));
+
+        //return view('assets.index')->with('assets', $user);
     }
 
     /**
@@ -38,7 +46,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
+        $people = Person::all();
+        return view('assets.create', compact('people'));
     }
 
     /**
@@ -49,21 +59,19 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'post_image' => 'image|nullable|max:1999'
+       
+        $validated = $request->validate([
+            'name' => 'required|max:100', 
+            'description' => 'required' ,
+            'purchased' => 'date',
+            'person_id' => 'required'
             
         ]);
+         
+        $item = Asset::create($validated);
         
-        // All fields were ended correctly, add to database
-        $post = new Post;
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
-        
-        return redirect('/posts')->with('success', 'Post Created');
-  
+        return redirect('/assets')->with('success', 'Item was saved successfully!');
+                
     }
 
     /**
@@ -74,8 +82,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id); 
-        return view('posts.show')->with('post', $post);
+        $asset = Asset::findOrFail($id);
+        return view('assets.show', compact('asset'));
+        
     }
 
     /**
@@ -86,8 +95,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id); 
-        return view('posts.edit')->with('post', $post);
+        $asset = Asset::findOrFail($id);
+        return view('assets.edit', compact('asset'));
+        
     }
 
     /**
@@ -99,20 +109,15 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            
+         $validated = $request->validate([
+            'name' => 'required|max:100', 
+            'description' => 'required' ,
         ]);
+        Asset::whereId($id)->update($validated);
         
-        // All fields were ended correctly, update database
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
         
-        return redirect('/posts')->with('success', 'Post Updated');
-  
+        return redirect('assets')->with('success', 'Asset information updated successfully!');
+   
     }
 
     /**
@@ -121,10 +126,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    
     public function destroy($id)
     {
-        $post = Post::find($id);
-        $post->delete();
-        return redirect('/posts')->with('success', 'Post Removed');
+        $asset = Asset::findOrFail($id);
+        $asset->delete();
+        
+        return redirect('assets')->with('success', 'Asset information deleted successfully!');
     }
 }
